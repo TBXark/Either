@@ -130,4 +130,6 @@ if let i = CommandLine.arguments.firstIndex(of: "-f"),
         try FileManager.default.removeItem(atPath: path)
     }
     try file.cache.write(toFile: path, atomically: true, encoding: .utf8)
+} else {
+    print("The target file path cannot be found")
 }
