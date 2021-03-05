@@ -25,20 +25,19 @@ func build(file: File, range: UInt8) {
     file.add("@propertyWrapper")
     file.add("public enum Either\(range)<\(up.joined(separator: " ,"))> {\n")
     for i in 0..<low.count {
-        file.add("\tcase \(low[i])(\(up[i]))")
+        file.add("    case \(low[i])(\(up[i]))")
     }
-    file.add("\n")
-    file.add("\tpublic var wrappedValue: Any {")
-    file.add("\t\tswitch self {")
+    file.add("    public var wrappedValue: Any {")
+    file.add("        switch self {")
     for i in 0..<low.count {
-        file.add("\t\t\tcase .\(low[i])(let v):")
-        file.add("\t\t\t\treturn v")
+        file.add("            case .\(low[i])(let v):")
+        file.add("                return v")
     }
-    file.add("\t\t}\n\t}\n")
+    file.add("        }\n    }\n")
     
     
     for i in 0..<low.count {
-        file.add("\tpublic var \(low[i]): \(up[i])? {")
+        file.add("    public var \(low[i]): \(up[i])? {")
         file.add("""
                 switch self {
                 case .\(low[i])(let v):
@@ -47,7 +46,7 @@ func build(file: File, range: UInt8) {
                     return nil
                 }
         """)
-        file.add("\t}\n")
+        file.add("    }\n")
     }
     
     for i in 0..<low.count {
@@ -61,12 +60,12 @@ func build(file: File, range: UInt8) {
     
     file.add("}\n\n")
  
-    file.add("public extension Either\(range): Codable where \(up.map({ "\($0): Codable"}).joined(separator: ", ")) {\n")
-    file.add("\tinit(from decoder: Decoder) throws {")
-    file.add("\t\tlet container = try decoder.singleValueContainer()")
+    file.add("extension Either\(range): Codable where \(up.map({ "\($0): Codable"}).joined(separator: ", ")) {\n")
+    file.add("    public init(from decoder: Decoder) throws {")
+    file.add("        let container = try decoder.singleValueContainer()")
     for i in 0..<low.count {
         file.add("""
-        \(i == 0 ? "\t\tif" : "else if") let v = try? container.decode(\(up[i]).self) {
+        \(i == 0 ? "        if" : "else if") let v = try? container.decode(\(up[i]).self) {
                     self = .\(low[i])(v)
                 }
         """, terminator: " ")
@@ -80,9 +79,9 @@ func build(file: File, range: UInt8) {
     """)
     
 
-    file.add("\tfunc encode(to encoder: Encoder) throws {")
-    file.add("\t\tvar container = encoder.singleValueContainer()")
-    file.add("\t\tswitch self {")
+    file.add("    public func encode(to encoder: Encoder) throws {")
+    file.add("        var container = encoder.singleValueContainer()")
+    file.add("        switch self {")
     for l in low {
         file.add("""
                     case .\(l)(let v):
@@ -96,8 +95,8 @@ func build(file: File, range: UInt8) {
     
     """)
 
-    file.add("public extension Either\(range): Equatable where \(up.map({ "\($0): Equatable"}).joined(separator: ", ")) {\n}\n\n")
-    file.add("public extension Either\(range): Hashable where \(up.map({ "\($0): Hashable"}).joined(separator: ", ")) {\n}")
+    file.add("extension Either\(range): Equatable where \(up.map({ "\($0): Equatable"}).joined(separator: ", ")) {\n}\n\n")
+    file.add("extension Either\(range): Hashable where \(up.map({ "\($0): Hashable"}).joined(separator: ", ")) {\n}")
 }
 
 let file = File()
