@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  Either
+//  Demo2
 //
 //  Created by TBXark on 2021/2/25.
 //
@@ -23,12 +23,12 @@ func build(file: File, range: UInt8) {
     
     file.add("\n\n\n// MARK: - Either\(range)")
     file.add("@propertyWrapper")
-    file.add("enum Either\(range)<\(up.joined(separator: " ,"))> {\n")
+    file.add("public enum Either\(range)<\(up.joined(separator: " ,"))> {\n")
     for i in 0..<low.count {
         file.add("\tcase \(low[i])(\(up[i]))")
     }
     file.add("\n")
-    file.add("\tvar wrappedValue: Any {")
+    file.add("\tpublic var wrappedValue: Any {")
     file.add("\t\tswitch self {")
     for i in 0..<low.count {
         file.add("\t\t\tcase .\(low[i])(let v):")
@@ -38,7 +38,7 @@ func build(file: File, range: UInt8) {
     
     
     for i in 0..<low.count {
-        file.add("\tvar \(low[i]): \(up[i])? {")
+        file.add("\tpublic var \(low[i]): \(up[i])? {")
         file.add("""
                 switch self {
                 case .\(low[i])(let v):
@@ -61,7 +61,7 @@ func build(file: File, range: UInt8) {
     
     file.add("}\n\n")
  
-    file.add("extension Either\(range): Codable where \(up.map({ "\($0): Codable"}).joined(separator: ", ")) {\n")
+    file.add("public extension Either\(range): Codable where \(up.map({ "\($0): Codable"}).joined(separator: ", ")) {\n")
     file.add("\tinit(from decoder: Decoder) throws {")
     file.add("\t\tlet container = try decoder.singleValueContainer()")
     for i in 0..<low.count {
@@ -73,7 +73,7 @@ func build(file: File, range: UInt8) {
     }
     file.add("""
     else {
-                throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknown type"])
+                throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknow type"])
             }
         }
     
@@ -96,8 +96,8 @@ func build(file: File, range: UInt8) {
     
     """)
 
-    file.add("extension Either\(range): Equatable where \(up.map({ "\($0): Equatable"}).joined(separator: ", ")) {\n}\n\n")
-    file.add("extension Either\(range): Hashable where \(up.map({ "\($0): Hashable"}).joined(separator: ", ")) {\n}")
+    file.add("public extension Either\(range): Equatable where \(up.map({ "\($0): Equatable"}).joined(separator: ", ")) {\n}\n\n")
+    file.add("public extension Either\(range): Hashable where \(up.map({ "\($0): Hashable"}).joined(separator: ", ")) {\n}")
 }
 
 let file = File()

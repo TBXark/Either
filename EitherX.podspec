@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'EitherX'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'An implementation of Either type in Swift'
   s.description      = 'An implementation of Either type in Swift Language'
   s.homepage         = 'https://github.com/TBXark/Either'
