@@ -11,6 +11,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+## Build
+
+```shell
+swift run Generate -f ./Sources/Either/Either.swift
+```
+
 ## Installation
 
 Either is available through [CocoaPods](https://cocoapods.org). To install

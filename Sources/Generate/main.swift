@@ -7,12 +7,16 @@
 
 import Foundation
 
+
 class File {
+    var log = false
     var cache = ""
     func add(_ text: String, terminator: String = "\n") {
         cache += text
         cache += terminator
-        print(text, terminator: terminator)
+        if log {
+            print(text, terminator: terminator)
+        }
     }
 }
 
@@ -100,6 +104,8 @@ func build(file: File, range: UInt8) {
 }
 
 let file = File()
+file.log = CommandLine.arguments.contains("-p")
+
 let df = DateFormatter()
 df.dateFormat = "yyyy/MM/dd"
 file.add("""
@@ -110,10 +116,18 @@ file.add("""
 //  Created by TBXark on \(df.string(from: Date())).
 //
 
+
+import Foundation
 """)
 (2...6).forEach({ c in
     build(file: file, range: c)
 })
 
-try FileManager.default.removeItem(atPath: "./Either/Classes/Either.swift")
-try file.cache.write(toFile: "./Either/Classes/Either.swift", atomically: true, encoding: .utf8)
+if let i = CommandLine.arguments.firstIndex(of: "-f"),
+   CommandLine.arguments.count > i {
+    let path = CommandLine.arguments[i + 1]
+    if FileManager.default.fileExists(atPath: path) {
+        try FileManager.default.removeItem(atPath: path)
+    }
+    try file.cache.write(toFile: path, atomically: true, encoding: .utf8)
+}
