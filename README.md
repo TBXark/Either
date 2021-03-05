@@ -17,7 +17,7 @@ Either is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Either'
+pod 'Either', :git=>'https://github.com/tbxark/Either'
 ```
 
 ## Author
