@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  Demo2
+//  Either
 //
 //  Created by TBXark on 2021/2/25.
 //
@@ -76,7 +76,7 @@ func build(file: File, range: UInt8) {
     }
     file.add("""
     else {
-                throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknow type"])
+                throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknown type"])
             }
         }
     
