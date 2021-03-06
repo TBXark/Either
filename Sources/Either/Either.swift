@@ -63,7 +63,7 @@ extension Either2: Codable where A: Codable, B: Codable {
         } else if let v = try? container.decode(B.self) {
             self = .b(v)
         } else {
-            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknow type"])
+            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknown type"])
         }
     }
 
@@ -158,7 +158,7 @@ extension Either3: Codable where A: Codable, B: Codable, C: Codable {
         } else if let v = try? container.decode(C.self) {
             self = .c(v)
         } else {
-            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknow type"])
+            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknown type"])
         }
     }
 
@@ -273,7 +273,7 @@ extension Either4: Codable where A: Codable, B: Codable, C: Codable, D: Codable 
         } else if let v = try? container.decode(D.self) {
             self = .d(v)
         } else {
-            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknow type"])
+            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknown type"])
         }
     }
 
@@ -408,7 +408,7 @@ extension Either5: Codable where A: Codable, B: Codable, C: Codable, D: Codable,
         } else if let v = try? container.decode(E.self) {
             self = .e(v)
         } else {
-            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknow type"])
+            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknown type"])
         }
     }
 
@@ -563,7 +563,7 @@ extension Either6: Codable where A: Codable, B: Codable, C: Codable, D: Codable,
         } else if let v = try? container.decode(F.self) {
             self = .f(v)
         } else {
-            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknow type"])
+            throw NSError(domain: "com.tbxark.either", code: 0, userInfo: [NSLocalizedDescriptionKey : "unknown type"])
         }
     }
 
