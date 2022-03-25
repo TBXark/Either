@@ -27,11 +27,11 @@ func build(file: File, range: UInt8) {
     
     file.add("\n\n\n// MARK: - Either\(range)")
     file.add("@propertyWrapper")
-    file.add("public enum Either\(range)<\(up.joined(separator: " ,"))> {\n")
+    file.add("public enum Either\(range)<\(up.joined(separator: " ,"))>: EitherContainer {\n")
     for i in 0..<low.count {
         file.add("    case \(low[i])(\(up[i]))")
     }
-    file.add("    public var wrappedValue: Any {")
+    file.add("\n    public var wrappedValue: Any {")
     file.add("        switch self {")
     for i in 0..<low.count {
         file.add("            case .\(low[i])(let v):")
@@ -55,7 +55,7 @@ func build(file: File, range: UInt8) {
     
     for i in 0..<low.count {
         file.add("""
-            init(_ v: \(up[i])) {
+            public init(_ v: \(up[i])) {
                 self = .\(low[i])(v)
             }
         
@@ -119,6 +119,22 @@ file.add("""
 
 import Foundation
 """)
+
+file.add("""
+
+
+public protocol EitherContainer {
+    var wrappedValue: Any { get }
+}
+
+extension EitherContainer {
+    public var value: Any {
+        return wrappedValue
+    }
+}
+
+""")
+
 (2...6).forEach({ c in
     build(file: file, range: c)
 })

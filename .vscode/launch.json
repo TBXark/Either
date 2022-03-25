@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Generate",
+            "program": "${workspaceFolder:Either}/.build/debug/Generate",
+            "args": [],
+            "cwd": "${workspaceFolder:Either}",
+            "preLaunchTask": "swift: Build Debug Generate"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release Generate",
+            "program": "${workspaceFolder:Either}/.build/release/Generate",
+            "args": [],
+            "cwd": "${workspaceFolder:Either}",
+            "preLaunchTask": "swift: Build Release Generate"
+        }
+    ]
+}

@@ -2,20 +2,33 @@
 //  Either.swift
 //  Either
 //
-//  Created by TBXark on 2021/03/05.
+//  Created by TBXark on 2022/03/25.
 //
 
 
 import Foundation
 
 
+public protocol EitherContainer {
+    var wrappedValue: Any { get }
+}
+
+extension EitherContainer {
+    public var value: Any {
+        return wrappedValue
+    }
+}
+
+
+
 
 // MARK: - Either2
 @propertyWrapper
-public enum Either2<A ,B> {
+public enum Either2<A ,B>: EitherContainer {
 
     case a(A)
     case b(B)
+
     public var wrappedValue: Any {
         switch self {
             case .a(let v):
@@ -43,11 +56,11 @@ public enum Either2<A ,B> {
         }
     }
 
-    init(_ v: A) {
+    public init(_ v: A) {
         self = .a(v)
     }
 
-    init(_ v: B) {
+    public init(_ v: B) {
         self = .b(v)
     }
 
@@ -89,11 +102,12 @@ extension Either2: Hashable where A: Hashable, B: Hashable {
 
 // MARK: - Either3
 @propertyWrapper
-public enum Either3<A ,B ,C> {
+public enum Either3<A ,B ,C>: EitherContainer {
 
     case a(A)
     case b(B)
     case c(C)
+
     public var wrappedValue: Any {
         switch self {
             case .a(let v):
@@ -132,15 +146,15 @@ public enum Either3<A ,B ,C> {
         }
     }
 
-    init(_ v: A) {
+    public init(_ v: A) {
         self = .a(v)
     }
 
-    init(_ v: B) {
+    public init(_ v: B) {
         self = .b(v)
     }
 
-    init(_ v: C) {
+    public init(_ v: C) {
         self = .c(v)
     }
 
@@ -186,12 +200,13 @@ extension Either3: Hashable where A: Hashable, B: Hashable, C: Hashable {
 
 // MARK: - Either4
 @propertyWrapper
-public enum Either4<A ,B ,C ,D> {
+public enum Either4<A ,B ,C ,D>: EitherContainer {
 
     case a(A)
     case b(B)
     case c(C)
     case d(D)
+
     public var wrappedValue: Any {
         switch self {
             case .a(let v):
@@ -241,19 +256,19 @@ public enum Either4<A ,B ,C ,D> {
         }
     }
 
-    init(_ v: A) {
+    public init(_ v: A) {
         self = .a(v)
     }
 
-    init(_ v: B) {
+    public init(_ v: B) {
         self = .b(v)
     }
 
-    init(_ v: C) {
+    public init(_ v: C) {
         self = .c(v)
     }
 
-    init(_ v: D) {
+    public init(_ v: D) {
         self = .d(v)
     }
 
@@ -303,13 +318,14 @@ extension Either4: Hashable where A: Hashable, B: Hashable, C: Hashable, D: Hash
 
 // MARK: - Either5
 @propertyWrapper
-public enum Either5<A ,B ,C ,D ,E> {
+public enum Either5<A ,B ,C ,D ,E>: EitherContainer {
 
     case a(A)
     case b(B)
     case c(C)
     case d(D)
     case e(E)
+
     public var wrappedValue: Any {
         switch self {
             case .a(let v):
@@ -370,23 +386,23 @@ public enum Either5<A ,B ,C ,D ,E> {
         }
     }
 
-    init(_ v: A) {
+    public init(_ v: A) {
         self = .a(v)
     }
 
-    init(_ v: B) {
+    public init(_ v: B) {
         self = .b(v)
     }
 
-    init(_ v: C) {
+    public init(_ v: C) {
         self = .c(v)
     }
 
-    init(_ v: D) {
+    public init(_ v: D) {
         self = .d(v)
     }
 
-    init(_ v: E) {
+    public init(_ v: E) {
         self = .e(v)
     }
 
@@ -440,7 +456,7 @@ extension Either5: Hashable where A: Hashable, B: Hashable, C: Hashable, D: Hash
 
 // MARK: - Either6
 @propertyWrapper
-public enum Either6<A ,B ,C ,D ,E ,F> {
+public enum Either6<A ,B ,C ,D ,E ,F>: EitherContainer {
 
     case a(A)
     case b(B)
@@ -448,6 +464,7 @@ public enum Either6<A ,B ,C ,D ,E ,F> {
     case d(D)
     case e(E)
     case f(F)
+
     public var wrappedValue: Any {
         switch self {
             case .a(let v):
@@ -519,27 +536,27 @@ public enum Either6<A ,B ,C ,D ,E ,F> {
         }
     }
 
-    init(_ v: A) {
+    public init(_ v: A) {
         self = .a(v)
     }
 
-    init(_ v: B) {
+    public init(_ v: B) {
         self = .b(v)
     }
 
-    init(_ v: C) {
+    public init(_ v: C) {
         self = .c(v)
     }
 
-    init(_ v: D) {
+    public init(_ v: D) {
         self = .d(v)
     }
 
-    init(_ v: E) {
+    public init(_ v: E) {
         self = .e(v)
     }
 
-    init(_ v: F) {
+    public init(_ v: F) {
         self = .f(v)
     }
 
