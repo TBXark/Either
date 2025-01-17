@@ -1,6 +1,5 @@
 # Either
 
-[![CI Status](https://img.shields.io/travis/tbxark/Either.svg?style=flat)](https://travis-ci.org/tbxark/Either)
 [![Version](https://img.shields.io/cocoapods/v/Either.svg?style=flat)](https://cocoapods.org/pods/Either)
 [![License](https://img.shields.io/cocoapods/l/Either.svg?style=flat)](https://cocoapods.org/pods/Either)
 [![Platform](https://img.shields.io/cocoapods/p/Either.svg?style=flat)](https://cocoapods.org/pods/Either)
